@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" width=device-width, initial-scale=1.0">
+  <title>Frequently Asked Questions</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .faq-container {
+      background-color: #fff;
+      padding: 20px;
+      margin: 20px auto;
+      width: 80%;
+      max-width: 900px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .faq-container h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 15px;
+    }
+
+    .faq-item h3 {
+      color: #555;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .faq-item p {
+      color: #666;
+      line-height: 1.6;
+      display: none; /* Initially hide the answer */
+    }
+
+    .faq-item.active p {
+      display: block; /* Show the answer when the item is active */
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo"><a href="index.html">DR.ai</a></div>
+
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="upload.html">Upload</a></li>
+        <li><a href="results.html">AI Results</a></li>
+        <li><a href="about.html">About DR</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="faq-section">
+      <div class="faq-container">
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+          <h3>Is this tool a replacement for a doctor?</h3>
+          <p>No, this tool is designed to provide a second opinion and is not a substitute for professional medical advice. Always consult with a qualified healthcare provider for diagnosis and treatment.</p>
+        </div>
+        
+        <div class="faq-item">
+            <h3>What does DR.ai do?</h3>
+            <p>It evaluates your eye scans and gives you rating on the severities of Diabetic Rhetinopathy. </p>
+          </div>
+
+        <div class="faq-item">
+            <h3>How to use it?</h3>
+            <p>Consult with your doctor to send you an image of your eye scan upload it, and you will recieve a rating of weather you have Diabetic Rhetinopathy.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How accurate is the AI model?</h3>
+          <p>Our AI model has been validated against a large dataset of retinal images and has achieved an accuracy of 90% in detecting diabetic retinopathy. However, results may vary, and a medical professional should always confirm the findings.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Does anyone have access to my images?</h3>
+          <p>We take your privacy seriously. Uploaded images are securely stored and used only for analysis purposes. We do not share your images with third parties without your explicit consent. For more details, please review our Privacy Policy.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How often should I get my eyes checked?</h3>
+          <p>If you have diabetes, it's recommended to have a comprehensive eye exam at least once a year, or more frequently if your doctor advises. Early detection is key to preventing vision loss from diabetic retinopathy.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What file formats are supported for image uploads?</h3>
+          <p>Our system supports uploading images in JPG, PNG, and TIFF formats. Please ensure that your image is clear and of sufficient resolution for accurate analysis.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <nav>
+    <div class="footer-content">
+      <p>&copy; 2024 Diabetic Retinopathy AI Detection</p>
+      <ul>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Disclaimer</a></li>
+      </ul>
+    </div>
+    </nav>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const faqItems = document.querySelectorAll('.faq-item');
+
+      faqItems.forEach(item => {
+        item.addEventListener('click', function() {
+          this.classList.toggle('active');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

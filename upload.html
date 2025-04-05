@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Retinal Image</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .upload-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed #bbb;
+      padding: 20px;
+      margin: 20px auto;
+      width: 80%;
+      max-width: 600px;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+    }
+
+    .upload-container input[type="file"] {
+      display: none;
+    }
+
+    .upload-container label {
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .upload-container label:hover {
+      background-color: #0056b3;
+    }
+
+    #imagePreview {
+      max-width: 100%;
+      max-height: 300px;
+      margin-top: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo"><a href="index.html">DR.ai</a></div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Upload</a></li>
+        <li><a href="results.html">AI Results</a></li>
+        <li><a href="about.html">About DR</a></li>
+        <li><a href="faq.html">FAQs</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="upload-section">
+      <h2>Upload Your Retinal Image</h2>
+      <div class="upload-container">
+        <input type="file" id="imageUpload" accept="image/*">
+        <label for="imageUpload">Select Image to Upload</label>
+        <img id="imagePreview" src="#" alt="Uploaded Image Preview" style="display:none;">
+      </div>
+      <button id="analyzeButton" disabled>Analyze Image</button>
+      <div class="disclaimer">
+        <p>Disclaimer: This tool is for informational purposes only and does not provide a medical diagnosis. Consult with a healthcare professional for accurate diagnosis and treatment.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <nav>
+    <div class="footer-content">
+      <p>&copy; 2024 Diabetic Retinopathy AI Detection</p>
+      <ul>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Disclaimer</a></li>
+      </ul>
+    </div>
+    </nav>
+  </footer>
+
+  <script>
+    document.getElementById('imageUpload').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        const imagePreview = document.getElementById('imagePreview');
+        imagePreview.src = e.target.result;
+        imagePreview.style.display = 'block';
+        document.getElementById('analyzeButton').disabled = false;
+      }
+
+      reader.readAsDataURL(file);
+    });
+
+    document.getElementById('analyzeButton').addEventListener('click', function() {
+      // Simulate AI analysis (replace with actual API call)
+      setTimeout(() => {
+        window.location.href = 'results.html'; // Redirect to results page
+      }, 2000); // Simulate 2 seconds processing time
+    });
+  </script>
+</body>
+</html>
