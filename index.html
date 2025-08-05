@@ -1,0 +1,374 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DR.AI - AI-Powered Diabetic Retinopathy Screening</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script type="importmap">
+      {
+        "imports": {
+          "marked": "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js",
+          "dompurify": "https://cdn.jsdelivr.net/npm/dompurify/dist/purify.es.min.js"
+        }
+      }
+    </script>
+    <script src="script.js" type="module"></script>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-container">
+            <a href="#hero" class="logo">
+                <img src="logo.png" alt="DR.AI Logo">
+            </a>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#why-us">Why We're Doing This</a></li>
+                    <li><a href="#upload-analysis">Upload</a></li>
+                    <li><a href="#about-dr">About DR</a></li>
+                    <li><a href="#faq">FAQs</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="#upload-analysis" class="cta-button">Upload Scan</a>
+            <button class="mobile-nav-toggle" aria-controls="main-nav-links" aria-expanded="false" aria-label="Menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <!-- HERO CONTENT HERE -->
+                <h1 class="animate-on-scroll">Clarity in Sight.<br>Powered by AI.</h1>
+                <p class="animate-on-scroll">The future of early, accessible diabetic retinopathy screening is here. Instant, accurate, and secure analysis to protect your vision.</p>
+                <a href="#upload-analysis" class="cta-button hero-cta animate-on-scroll">Get Your Instant Analysis</a>
+                <!-- END HERO CONTENT -->
+            </div>
+        </section>
+
+        <!-- WHY WE'RE DOING THIS SECTION -->
+        <section id="why-us" class="content-section animated-bg">
+            <div id="clouds-container"></div>
+            <div class="container animate-on-scroll">
+                <h2>Why We're Doing This</h2>
+                <p class="section-intro">
+                    Our mission is born from a shared passion for leveraging technology to solve critical healthcare challenges. We believe that early detection is the key to preventing vision loss from treatable conditions, but access to screening remains a barrier for millions. DR.AI is our answer—a tool to make preliminary eye health screening accessible, affordable, and accurate for everyone, everywhere.
+                </p>
+            </div>
+        </section>
+
+        <!-- FEATURES SECTION -->
+        <section id="features" class="features-section">
+            <div class="container">
+                 <!-- FEATURES HERE -->
+                <div class="feature-grid">
+                    <div class="feature-card animate-on-scroll">
+                        <img src="feature-icon-1.png" alt="Instant Analysis Icon">
+                        <h3>Instant Analysis</h3>
+                        <p>Receive your screening results in minutes, not days.</p>
+                    </div>
+                    <div class="feature-card animate-on-scroll">
+                        <img src="feature-icon-2.png" alt="AI-Powered Precision Icon">
+                        <h3>AI-Powered Precision</h3>
+                        <p>Our technology provides highly accurate, reliable detection.</p>
+                    </div>
+                    <div class="feature-card animate-on-scroll">
+                        <img src="feature-icon-3.png" alt="Secure Reports Icon">
+                        <h3>Secure & Confidential</h3>
+                        <p>Your data is encrypted and handled with utmost privacy.</p>
+                    </div>
+                </div>
+                 <!-- END FEATURES HERE -->
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS SECTION -->
+        <section id="upload-analysis" class="content-section alternate-bg">
+            <div class="container animate-on-scroll">
+                <h2>Get Your Instant Analysis</h2>
+                <p class="section-intro">Follow three simple steps to get a clear, confidential, and AI-powered screening of your retinal scan. Your vision health, simplified.</p>
+                <div class="analysis-workflow">
+                    <!-- Step 1: Upload -->
+                    <div id="upload-step" class="analysis-step active">
+                        <div class="step-header">
+                            <div class="step-number">1</div>
+                            <h3>Upload Your Retinal Scan</h3>
+                        </div>
+                        <p>Drag and drop your fundus image or click to select a file. Your data is encrypted and secure.</p>
+                        <div id="drop-zone" class="drop-zone">
+                            <div class="drop-zone-prompt">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Drag & drop image here, or <strong>click to browse</strong></p>
+                                <small>Supports PNG, JPG, WEBP</small>
+                            </div>
+                            <input type="file" id="file-input" accept="image/png, image/jpeg, image/webp" hidden>
+                        </div>
+                        <div id="image-preview-container" class="image-preview-container" style="display: none;">
+                            <img id="image-preview" src="#" alt="Image Preview">
+                            <button id="remove-image-btn" class="remove-image-btn">&times;</button>
+                        </div>
+                         <button id="analyze-btn" class="cta-button" disabled>Analyze Image</button>
+                    </div>
+
+                    <!-- Step 2: Analyzing -->
+                    <div id="analyzing-step" class="analysis-step">
+                        <div class="step-header">
+                             <div class="step-number">2</div>
+                             <h3>AI Analyzes Your Image</h3>
+                        </div>
+                        <div class="loader">
+                            <div class="spinner"></div>
+                            <p>Our algorithm is screening for signs of multiple conditions... this may take a moment.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Results -->
+                    <div id="results-step" class="analysis-step">
+                         <div class="step-header">
+                            <div class="step-number">3</div>
+                            <h3>Your Report is Ready</h3>
+                        </div>
+                        <div id="ai-results" class="ai-results">
+                            <!-- AI generated results will be injected here -->
+                        </div>
+                         <button id="start-over-btn" class="cta-button secondary">Start Over</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT US SECTION -->
+        <section id="about-us" class="content-section">
+            <div class="container">
+                <h2 class="animate-on-scroll">Meet the Founders</h2>
+                <p class="section-intro animate-on-scroll">A collaboration at the intersection of computational science and engineering, driven to build impactful technology.</p>
+                <div class="team-grid">
+                    <div class="team-card animate-on-scroll">
+                        <img src="dimitri.png" alt="Photo of Dimitri Abrahamsson" class="team-photo">
+                        <div class="team-info">
+                            <h3>Dimitri Abrahamsson</h3>
+                            <h4>PhD in Analytical and Computational Chemistry</h4>
+                            <p>Specializing in non-targeted analysis, high-resolution mass spectrometry, computational chemistry, and cheminformatics.</p>
+                        </div>
+                    </div>
+                    <div class="team-card animate-on-scroll">
+                        <img src="jeanmarck.png" alt="Photo of Jeanmarck Ceant" class="team-photo">
+                        <div class="team-info">
+                            <h3>Jeanmarck Ceant</h3>
+                            <h4>Computer Science & Electrical Engineering, NYU</h4>
+                            <p>Focused on computational systems, applied algorithms, data analysis, and the development of technology to address large-scale challenges.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT DR SECTION -->
+        <section id="about-dr" class="content-section alternate-bg">
+            <div class="container animate-on-scroll">
+                <h2>Expanding the Frontiers of Eye Health</h2>
+                <p class="section-intro">Our research explores the use of AI to detect and classify a range of eye conditions from retinal images. By training our models on these categories, our goal is to support early, accessible, and accurate diagnosis to prevent vision loss.</p>
+                <div class="conditions-grid">
+                    <div class="condition-card">
+                        <h3>Diabetic Retinopathy</h3>
+                        <p>A complication of diabetes where high blood sugar damages the blood vessels in the retina, which can lead to blindness if left untreated.</p>
+                    </div>
+                    <div class="condition-card">
+                        <h3>Age-Related Macular Degeneration (ARMD)</h3>
+                        <p>A disease that damages the macula—the central part of the retina—causing blurred or lost central vision, especially in older adults.</p>
+                    </div>
+                    <div class="condition-card">
+                        <h3>Cataracts</h3>
+                        <p>A clouding of the eye's natural lens, leading to blurry vision, glare sensitivity, and difficulty seeing at night. It is one of the most common causes of vision loss worldwide.</p>
+                    </div>
+                    <div class="condition-card">
+                        <h3>Glaucoma</h3>
+                        <p>A group of eye diseases that damage the optic nerve, often due to high eye pressure, and can result in permanent vision loss if not detected early.</p>
+                    </div>
+                    <div class="condition-card">
+                        <h3>Normal (Healthy)</h3>
+                        <p>Eyes that show no signs of disease or abnormalities, providing a baseline for AI models to learn and differentiate between healthy and diseased conditions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- COMMUNITY FEEDBACK SECTION -->
+        <section id="community-feedback" class="content-section">
+             <div class="container animate-on-scroll">
+                <h2>Community Feedback & Questions</h2>
+                <p class="section-intro">See what others are saying or ask a question. Your feedback helps us improve.</p>
+
+                <div id="comments-container" class="comments-container">
+                    <!-- Comments will be loaded here -->
+                </div>
+                <div id="comments-loading" class="comments-loader">
+                    <div class="spinner"></div>
+                    <p>Loading comments...</p>
+                </div>
+                <button id="load-more-comments" class="cta-button secondary" style="display: none;">Load More</button>
+
+                <form id="comment-form" class="comment-form">
+                    <h3>Leave a Comment</h3>
+                    <div class="form-group">
+                        <textarea id="comment-content" placeholder="Write your comment here..." required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Post Comment</button>
+                    <div id="comment-form-feedback" style="display: none; margin-top: 1rem;"></div>
+                </form>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS SECTION -->
+        <section id="testimonials" class="content-section">
+             <div class="container animate-on-scroll">
+                <!-- TESTIMONIALS HERE -->
+                <h2>Trusted by Patients and Professionals</h2>
+                <div class="testimonial">
+                    <img src="retinal-scan-person.png" alt="A smiling patient" class="testimonial-image">
+                    <blockquote>
+                        "The process was so fast and easy. I got peace of mind without having to wait weeks for an appointment. A truly revolutionary service."
+                    </blockquote>
+                    <cite>– Alex J., Patient</cite>
+                </div>
+                <!-- END TESTIMONIALS HERE -->
+            </div>
+        </section>
+        
+        <!-- STATS SECTION -->
+        <section id="stats" class="stats-section alternate-bg">
+            <div class="stats-bg-container"></div>
+            <div class="container animate-on-scroll">
+                <!-- STATS HERE -->
+                <h2>Impact by the Numbers</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">99.5%</span>
+                        <span class="stat-label">Accuracy Rate</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">50,000+</span>
+                        <span class="stat-label">Scans Processed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number"><60s</span>
+                        <span class="stat-label">Average Analysis Time</span>
+                    </div>
+                </div>
+                <!-- END STATS HERE -->
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="content-section">
+            <div class="container animate-on-scroll">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Is this a medical diagnosis?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>No. DR.AI provides an AI-powered screening and is not a substitute for a comprehensive eye exam by a qualified ophthalmologist. The results are intended to help identify potential risks early and encourage users to seek professional medical advice. It is a tool for preliminary screening, not a diagnostic service.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>How accurate is the AI analysis?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Our AI models have been trained on vast datasets of retinal images and have demonstrated high accuracy (over 99% in internal tests) in identifying markers associated with various eye conditions. However, accuracy can be influenced by image quality and other factors. It should be used as a screening tool to supplement, not replace, professional consultation.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>Is my data secure?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Absolutely. We prioritize your privacy and data security. All uploaded images and data are encrypted both in transit and at rest. We do not share your personal information or images with third parties without your explicit consent. Our systems are designed to be compliant with health information privacy standards.</p>
+                        </div>
+                    </div>
+                     <div class="faq-item">
+                        <button class="faq-question" aria-expanded="false">
+                            <span>What kind of image do I need to upload?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>For best results, you should upload a clear, high-resolution fundus photograph of your retina. This is the type of image typically taken by an optometrist or ophthalmologist during an eye exam. Poor quality images, or images that are not of the retina, will not yield accurate screening results.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="content-section alternate-bg">
+            <div class="container animate-on-scroll">
+                <h2>Get In Touch</h2>
+                <p class="section-intro">Have questions or feedback? We'd love to hear from you. Fill out the form below and our team will get back to you as soon as possible.</p>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="cta-button">Send Message</button>
+                    <div id="form-thank-you" class="form-thank-you" style="display: none;">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Thank you for your message! We'll be in touch soon.</p>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer-main">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <img src="logo.png" alt="DR.AI Logo" class="footer-logo">
+                    <p>Clarity in sight. Powered by AI.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigate</h4>
+                    <ul>
+                        <li><a href="#mission">Our Mission</a></li>
+                        <li><a href="#upload-analysis">How It Works</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DR.AI Inc. All rights reserved. This is a fictional service for demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
