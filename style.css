@@ -485,6 +485,7 @@ h2 {
     to { transform: translateX(-50%); } /* Move by one image width */
 }
 
+
 /* --- About Us Section --- */
 #about-us {
     background-color: var(--bg-light);
@@ -539,10 +540,118 @@ h2 {
     font-size: 0.95rem;
 }
 
-/* --- Map Section --- */
-.map-container {
-    display: none;
+
+
+
+
+/* --- DR Map Section --- */
+#dr-map-section {
+  background-color: var(--bg-light);
 }
+
+#dr-map-section .container {
+  display: grid;
+  gap: 1rem;
+  justify-items: center; /* center everything horizontally */
+  text-align: center;
+}
+
+/* Controls centered in one row; wrap on small screens */
+.map-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;   /* centered */
+  gap: 0.75rem;
+  margin: 0 auto 1rem;
+}
+
+#disease-selector {
+  display: inline-flex;
+  gap: 0.5rem;
+}
+
+#map-zoom-toggle {
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+}
+
+/* Wrapper constrains width and centers the resizable square */
+#dr-map-wrapper {
+  width: min(92vw, 960px);     /* responsive max width */
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+}
+
+/* The actual Leaflet container: square by default, resizable by user */
+#dr-map {
+  width: 100%;
+  aspect-ratio: 1 / 1;         /* default square */
+  height: auto;                /* let aspect-ratio compute height */
+  min-width: 320px;
+  min-height: 320px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-light);
+  background: #f0f0f0;
+
+  /* make it user-resizable */
+  resize: both;
+  overflow: hidden;            /* hide scrollbars inside Leaflet container */
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+/* Custom Tooltip for Map */
+#tooltip {
+  position: absolute;
+  display: none;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-dark-primary);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  pointer-events: none;
+  z-index: 2000;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+#tooltip strong { color: var(--text-dark-heading); }
+
+/* Leaflet UI polish */
+.leaflet-container { font-family: 'Inter', sans-serif; }
+.info.legend {
+  padding: 6px 8px;
+  font: 14px/1.2 'Inter', Arial, Helvetica, sans-serif;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  line-height: 20px;
+  color: #555;
+}
+.info.legend i {
+  width: 18px; height: 18px;
+  float: left; margin-right: 8px;
+  opacity: 0.7; border: 1px solid #999;
+}
+
+/* Remove anything that hides the map */
+.map-container { display: initial; }
+
+
+
+
+
+
+
+
+
+
 
 /* --- FAQ Section --- */
 .faq-accordion {
@@ -963,3 +1072,21 @@ h2 {
         margin: 0 auto 1rem;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

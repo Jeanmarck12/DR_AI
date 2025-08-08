@@ -5,6 +5,7 @@
     <title>DR.AI - AI-Powered Diabetic Retinopathy Screening</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script type="importmap">
       {
         "imports": {
@@ -13,6 +14,7 @@
         }
       }
     </script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="script.js" type="module"></script>
 </head>
 <body>
@@ -25,10 +27,12 @@
             <nav class="main-nav">
                 <ul class="nav-links">
                     <li><a href="#hero">Home</a></li>
-                    <li><a href="#why-us">Why We're Doing This</a></li>
+                    <li><a href="#why-us">Why This</a></li>
+                    <li><a href="#about-dr">About</a></li>
                     <li><a href="#upload-analysis">Upload</a></li>
-                    <li><a href="#about-dr">About DR</a></li>
+                    <li><a href="#dr-map-section">DR Map</a></li>
                     <li><a href="#faq">FAQs</a></li>
+                    <li><a href="#about-us">Founders</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -64,6 +68,38 @@
             </div>
         </section>
 
+
+        <!-- ABOUT DR SECTION -->
+        <section id="about-dr" class="content-section alternate-bg">
+            <div class="container animate-on-scroll">
+                <h2>Expanding the Frontiers of Eye Health</h2>
+                <p class="section-intro">Our research explores the use of AI to detect and classify a range of eye conditions from retinal images. By training our models on these categories, our goal is to support early, accessible, and accurate diagnosis to prevent vision loss.</p>
+                <div class="conditions-grid">
+                    <div class="condition-card">
+                        <h3>Diabetic Retinopathy</h3>
+                        <p>A complication of diabetes where high blood sugar damages the blood vessels in the retina, which can lead to blindness if left untreated.</p>
+                    </div>
+                    <div class="condition-card">
+                        <h3>Age-Related Macular Degeneration (ARMD)</h3>
+                        <p>A disease that damages the macula—the central part of the retina—causing blurred or lost central vision, especially in older adults.</p>
+                    </div>
+                    <div class="condition-card">
+                        <h3>Cataracts</h3>
+                        <p>A clouding of the eye's natural lens, leading to blurry vision, glare sensitivity, and difficulty seeing at night. It is one of the most common causes of vision loss worldwide.</p>
+                    </div>
+                    <div class="condition-card">
+                        <h3>Glaucoma</h3>
+                        <p>A group of eye diseases that damage the optic nerve, often due to high eye pressure, and can result in permanent vision loss if not detected early.</p>
+                    </div>
+                    <div class="condition-card">
+                        <h3>Normal (Healthy)</h3>
+                        <p>Eyes that show no signs of disease or abnormalities, providing a baseline for AI models to learn and differentiate between healthy and diseased conditions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
         <!-- FEATURES SECTION -->
         <section id="features" class="features-section">
             <div class="container">
@@ -89,6 +125,9 @@
             </div>
         </section>
 
+
+        
+        
         <!-- HOW IT WORKS SECTION -->
         <section id="upload-analysis" class="content-section alternate-bg">
             <div class="container animate-on-scroll">
@@ -144,62 +183,6 @@
             </div>
         </section>
 
-        <!-- ABOUT US SECTION -->
-        <section id="about-us" class="content-section">
-            <div class="container">
-                <h2 class="animate-on-scroll">Meet the Founders</h2>
-                <p class="section-intro animate-on-scroll">A collaboration at the intersection of computational science and engineering, driven to build impactful technology.</p>
-                <div class="team-grid">
-                    <div class="team-card animate-on-scroll">
-                        <img src="dimitri.png" alt="Photo of Dimitri Abrahamsson" class="team-photo">
-                        <div class="team-info">
-                            <h3>Dimitri Abrahamsson</h3>
-                            <h4>PhD in Analytical and Computational Chemistry</h4>
-                            <p>Specializing in non-targeted analysis, high-resolution mass spectrometry, computational chemistry, and cheminformatics.</p>
-                        </div>
-                    </div>
-                    <div class="team-card animate-on-scroll">
-                        <img src="jeanmarck.png" alt="Photo of Jeanmarck Ceant" class="team-photo">
-                        <div class="team-info">
-                            <h3>Jeanmarck Ceant</h3>
-                            <h4>Computer Science & Electrical Engineering, NYU</h4>
-                            <p>Focused on computational systems, applied algorithms, data analysis, and the development of technology to address large-scale challenges.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ABOUT DR SECTION -->
-        <section id="about-dr" class="content-section alternate-bg">
-            <div class="container animate-on-scroll">
-                <h2>Expanding the Frontiers of Eye Health</h2>
-                <p class="section-intro">Our research explores the use of AI to detect and classify a range of eye conditions from retinal images. By training our models on these categories, our goal is to support early, accessible, and accurate diagnosis to prevent vision loss.</p>
-                <div class="conditions-grid">
-                    <div class="condition-card">
-                        <h3>Diabetic Retinopathy</h3>
-                        <p>A complication of diabetes where high blood sugar damages the blood vessels in the retina, which can lead to blindness if left untreated.</p>
-                    </div>
-                    <div class="condition-card">
-                        <h3>Age-Related Macular Degeneration (ARMD)</h3>
-                        <p>A disease that damages the macula—the central part of the retina—causing blurred or lost central vision, especially in older adults.</p>
-                    </div>
-                    <div class="condition-card">
-                        <h3>Cataracts</h3>
-                        <p>A clouding of the eye's natural lens, leading to blurry vision, glare sensitivity, and difficulty seeing at night. It is one of the most common causes of vision loss worldwide.</p>
-                    </div>
-                    <div class="condition-card">
-                        <h3>Glaucoma</h3>
-                        <p>A group of eye diseases that damage the optic nerve, often due to high eye pressure, and can result in permanent vision loss if not detected early.</p>
-                    </div>
-                    <div class="condition-card">
-                        <h3>Normal (Healthy)</h3>
-                        <p>Eyes that show no signs of disease or abnormalities, providing a baseline for AI models to learn and differentiate between healthy and diseased conditions.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
         <!-- COMMUNITY FEEDBACK SECTION -->
         <section id="community-feedback" class="content-section">
              <div class="container animate-on-scroll">
@@ -266,6 +249,36 @@
             </div>
         </section>
 
+
+
+
+
+
+         <!--  MAP SECTION (Moved) -->
+        <section id="dr-map-section" class="content-section">
+        <div class="container animate-on-scroll">
+            <h2>U.S. Eye Disease Prevalence Map</h2>
+            <p class="section-intro">
+            Select a condition to explore its prevalence by county. Data is illustrative. Hover over a county for details.
+            </p>
+
+            <div class="map-controls">
+            <div id="disease-selector" class="disease-selector">
+                <button class="disease-btn active" data-disease="Glaucoma">Glaucoma</button>
+                <button class="disease-btn" data-disease="Diabetic_Retinopathy">Diabetic Retinopathy</button>
+                <button class="disease-btn" data-disease="ARMD">ARMD</button>
+            </div>
+            <button id="map-zoom-toggle" class="cta-button secondary">Pause Map Zoom</button>
+            </div>
+
+            <!-- Wrapper ensures the map is centered and has a predictable width -->
+            <div id="dr-map-wrapper">
+            <div id="dr-map"></div>
+            </div>
+        </div>
+        </section>
+
+
         <!-- FAQ SECTION -->
         <section id="faq" class="content-section">
             <div class="container animate-on-scroll">
@@ -310,6 +323,35 @@
                 </div>
             </div>
         </section>
+
+
+
+        <!-- ABOUT US SECTION -->
+        <section id="about-us" class="content-section">
+            <div class="container">
+                <h2 class="animate-on-scroll">Meet the Founders</h2>
+                <p class="section-intro animate-on-scroll">A collaboration at the intersection of computational science and engineering, driven to build impactful technology.</p>
+                <div class="team-grid">
+                    <div class="team-card animate-on-scroll">
+                        <img src="dimitri.png" alt="Photo of Dimitri Abrahamsson" class="team-photo">
+                        <div class="team-info">
+                            <h3>Dimitri Abrahamsson</h3>
+                            <h4>PhD in Analytical and Computational Chemistry</h4>
+                            <p>Specializing in non-targeted analysis, high-resolution mass spectrometry, computational chemistry, and cheminformatics.</p>
+                        </div>
+                    </div>
+                    <div class="team-card animate-on-scroll">
+                        <img src="jeanmarck.png" alt="Photo of Jeanmarck Ceant" class="team-photo">
+                        <div class="team-info">
+                            <h3>Jeanmarck Ceant</h3>
+                            <h4>Computer Science & Electrical Engineering, NYU</h4>
+                            <p>Focused on computational systems, applied algorithms, data analysis, and the development of technology to address large-scale challenges.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 
         <!-- CONTACT SECTION -->
         <section id="contact" class="content-section alternate-bg">
@@ -369,6 +411,8 @@
             </div>
         </div>
     </footer>
+
+    <div id="tooltip" class="tooltip"></div>
 
 </body>
 </html>

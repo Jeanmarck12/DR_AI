@@ -1,0 +1,141 @@
+{
+  "type": "FeatureCollection",
+  "name": "eye_disease_map_data",
+  "features": [
+    { "type": "Feature", "properties": { "NAME": "Autauga", "STATE_NAME": "Alabama", "Glaucoma_Prevalence": 3.8, "Diabetic_Retinopathy_Prevalence": 4.2, "ARMD_Prevalence": 2.5, "Cataracts_Prevalence": 5.1 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -86.411786, 32.706342 ], [ -86.411786, 32.706342 ], [ -86.411786, 32.706342 ], [ -86.411786, 32.706342 ] ] ] } },
+    { "type": "Feature", "properties": { "NAME": "Baldwin", "STATE_NAME": "Alabama", "Glaucoma_Prevalence": 2.2, "Diabetic_Retinopathy_Prevalence": 2.5, "ARMD_Prevalence": 3.1, "Cataracts_Prevalence": 4.2 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -87.74727, 31.233539 ], [ -87.74727, 31.233539 ], [ -87.74727, 31.233539 ], [ -87.74727, 31.233539 ] ] ] } },
+    { "type": "Feature", "properties": { "NAME": "Barbour", "STATE_NAME": "Alabama", "Glaucoma_Prevalence": 4.1, "Diabetic_Retinopathy_Prevalence": 4.5, "ARMD_Prevalence": 2.8, "Cataracts_Prevalence": 5.5 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -85.055941, 32.094593 ], [ -85.055941, 32.094593 ], [ -85.055941, 32.094593 ], [ -85.055941, 32.094593 ] ] ] } },
+    { "type": "Feature", "properties": { "NAME": "Bibb", "STATE_NAME": "Alabama", "Glaucoma_Prevalence": 3.6, "Diabetic_Retinopathy_Prevalence": 3.9, "ARMD_Prevalence": 2.4, "Cataracts_Prevalence": 4.9 }, "geometry": { "type": "Polygon", "coordinates": [ [ [ -87.058342, 33.109015 ], [ -87.058342, 33.109015 ], [ -87.058342, 33.109015 ], [ -87.058342, 33.109015 ] ] ] } },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME": "Los Angeles",
+        "STATE_NAME": "California",
+        "Glaucoma_Prevalence": 2.9, 
+        "Diabetic_Retinopathy_Prevalence": 3.2, 
+        "ARMD_Prevalence": 3.5, 
+        "Cataracts_Prevalence": 4.8
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-118.86, 34.33], [-118.15, 34.33], [-118.15, 34.82], [-117.65, 34.82],
+            [-117.65, 34.07], [-117.28, 33.72], [-118.25, 33.72], [-118.66, 33.99],
+            [-118.86, 34.33]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME": "San Diego",
+        "STATE_NAME": "California",
+        "Glaucoma_Prevalence": 1.9, 
+        "Diabetic_Retinopathy_Prevalence": 2.2, 
+        "ARMD_Prevalence": 2.8, 
+        "Cataracts_Prevalence": 3.9
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [ [ [ -117.161087, 32.715736 ], [ -117.161087, 32.715736 ], [ -117.161087, 32.715736 ], [ -117.161087, 32.715736 ] ] ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME": "Orange",
+        "STATE_NAME": "California",
+        "Glaucoma_Prevalence": 1.8, 
+        "Diabetic_Retinopathy_Prevalence": 2.1, 
+        "ARMD_Prevalence": 2.7, 
+        "Cataracts_Prevalence": 3.8
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [ [ [ -117.790253, 33.717471 ], [ -117.790253, 33.717471 ], [ -117.790253, 33.717471 ], [ -117.790253, 33.717471 ] ] ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME": "Cook",
+        "STATE_NAME": "Illinois",
+        "Glaucoma_Prevalence": 2.8, 
+        "Diabetic_Retinopathy_Prevalence": 3.1, 
+        "ARMD_Prevalence": 3.4, 
+        "Cataracts_Prevalence": 4.7
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-87.52, 42.15], [-87.52, 41.47], [-88.26, 41.47], [-88.26, 42.15],
+            [-87.52, 42.15]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME": "Harris",
+        "STATE_NAME": "Texas",
+        "Glaucoma_Prevalence": 3.1, 
+        "Diabetic_Retinopathy_Prevalence": 3.4, 
+        "ARMD_Prevalence": 2.1, 
+        "Cataracts_Prevalence": 4.9
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-95.91, 30.17], [-95.06, 30.17], [-95.06, 29.52], [-95.91, 29.52],
+            [-95.91, 30.17]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME": "Dallas",
+        "STATE_NAME": "Texas",
+        "Glaucoma_Prevalence": 3.3, 
+        "Diabetic_Retinopathy_Prevalence": 3.6, 
+        "ARMD_Prevalence": 2.2, 
+        "Cataracts_Prevalence": 5.0
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-97.04, 32.99], [-96.55, 32.99], [-96.55, 32.61], [-97.04, 32.61],
+            [-97.04, 32.99]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "NAME": "Maricopa",
+        "STATE_NAME": "Arizona",
+        "Glaucoma_Prevalence": 2.1, 
+        "Diabetic_Retinopathy_Prevalence": 2.4, 
+        "ARMD_Prevalence": 3.0, 
+        "Cataracts_Prevalence": 4.1
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-113.24, 33.98], [-111.20, 33.98], [-111.20, 32.74], [-113.24, 32.74], 
+            [-113.24, 33.98]
+          ]
+        ]
+      }
+    }
+  ]
+}

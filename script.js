@@ -74,6 +74,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         window.requestAnimationFrame(step);
     };
 
+
+
+
+
+
+
+
+
     const statsObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -260,6 +268,232 @@ Be professional, clear, and reassuring. Do not invent medical facts beyond visua
         startOverBtn.addEventListener('click', resetUploader);
     }
     
+
+
+
+
+
+
+
+
+    // --- Choropleth Map Initialization ---
+    const mapElement = document.getElementById('dr-map');
+    const mapZoomToggleButton = document.getElementById('map-zoom-toggle');
+    const diseaseSelector = document.getElementById('disease-selector');
+
+    // use existing tooltip or create one
+    let tooltipEl = document.getElementById('tooltip');
+    if (!tooltipEl) {
+    tooltipEl = document.createElement('div');
+    tooltipEl.id = 'tooltip';
+    Object.assign(tooltipEl.style, {
+        position: 'absolute', display: 'none', pointerEvents: 'none',
+        background: 'rgba(0,0,0,0.75)', color: '#fff', padding: '6px 8px',
+        borderRadius: '6px', fontSize: '12px', zIndex: 1000
+    });
+    document.body.appendChild(tooltipEl);
+    }
+
+    if (mapElement) {
+    const mapObserver = new IntersectionObserver((entries, observer) => {
+        if (entries[0].isIntersecting) {
+        initMap();
+        observer.unobserve(mapElement);
+        }
+    }, { threshold: 0.1 });
+
+    mapObserver.observe(mapElement);
+    }
+
+    async function initMap() {
+    console.info('[INFO] initMap');
+    const map = L.map('dr-map').setView([39.8283, -98.5795], 4);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    // zoom toggle
+    if (mapZoomToggleButton) {
+        let isZoomEnabled = true;
+        mapZoomToggleButton.addEventListener('click', () => {
+        (isZoomEnabled ? map.scrollWheelZoom.disable() : map.scrollWheelZoom.enable());
+        mapZoomToggleButton.textContent = isZoomEnabled ? 'Resume Map Zoom' : 'Pause Map Zoom';
+        isZoomEnabled = !isZoomEnabled;
+        });
+    }
+
+    // --- Files you asked for ---
+    const files = {
+        Glaucoma: 'glaucoma_map_data_hover_ready.geojson',
+        Diabetic_Retinopathy: 'dr_map_data_hover_ready.geojson',
+        ARMD: 'armd_map_data_hover_ready.geojson'
+    };
+
+    // --- Per-disease styling config (adjust bins if your data differs) ---
+    const config = {
+        Glaucoma: {
+        property: 'Glaucoma_Prevalence',
+        name: 'Glaucoma',
+        colors: ['#c7e9c0', '#41ab5d', '#005a32'],
+        bins: [1.2, 1.5, 2.0]
+        },
+        Diabetic_Retinopathy: {
+        property: 'DR_Prevalence',        // change here if your key is different
+        name: 'Diabetic Retinopathy',
+        colors: ['#f2c9d7', '#e471ab', '#7a0177'],
+        bins: [14.97, 23.11, 27.68]       // matches your earlier legend/screenshot
+        },
+        ARMD: {
+        property: 'ARMD_Prevalence',
+        name: 'ARMD',
+        colors: ['#d0d1e6', '#74a9cf', '#0570b0'],
+        bins: [9, 12, 15]
+        }
+    };
+
+    let current = 'Glaucoma';
+    let layer = null;
+    let legend = null;
+    const cache = new Map();
+
+    const fetchGeo = async (filename) => {
+        if (cache.has(filename)) return cache.get(filename);
+        // If these files live in /public (Vite/Next/CRA), prefer fetch(`/${filename}`)
+        const url = new URL(`./${filename}`, import.meta.url).href;
+        console.info('[INFO] fetching', url);
+        const res = await fetch(url, { cache: 'no-store' });
+        if (!res.ok) throw new Error(`HTTP ${res.status} for ${res.url}`);
+        const json = await res.json();
+        cache.set(filename, json);
+        return json;
+    };
+
+    const getColorFor = (bins, colors, value) => (
+        value > bins[2] ? colors[2] :
+        value > bins[1] ? colors[1] :
+        value > bins[0] ? colors[0] :
+                        '#f7f7f7'
+    );
+
+    const createLegend = (cfg) => {
+        if (legend) map.removeControl(legend);
+        legend = L.control({ position: 'bottomright' });
+        legend.onAdd = () => {
+        const div = L.DomUtil.create('div', 'info legend');
+        const grades = [0, ...cfg.bins];
+        const labels = [`<strong>${cfg.name} (%)</strong>`];
+        for (let i = 0; i < grades.length; i++) {
+            const from = grades[i];
+            const to = grades[i + 1];
+            const color = i === 0 ? '#f7f7f7' : cfg.colors[i - 1];
+            labels.push(
+            `<i style="background:${color}"></i> ${from}${to ? '&ndash;' + to : '+'}`
+            );
+        }
+        div.innerHTML = labels.join('<br>');
+        return div;
+        };
+        legend.addTo(map);
+    };
+
+    async function drawDisease(key) {
+        const cfg = config[key];
+        const file = files[key];
+        if (!cfg) return console.error('[ERROR] Unknown disease key:', key);
+        if (!file) return console.error('[ERROR] No file mapped for disease:', key);
+
+        try {
+        if (layer) map.removeLayer(layer);
+        if (legend) map.removeControl(legend);
+
+        const data = await fetchGeo(file);
+
+        const style = (feature) => {
+            const raw = feature.properties?.[cfg.property];
+            const val = Number(raw);
+            if (!Number.isFinite(val)) {
+            console.warn(`[WARN] Missing/NaN ${cfg.property} for`, feature.properties?.NAME);
+            }
+            return {
+            fillColor: getColorFor(cfg.bins, cfg.colors, val),
+            weight: 0.5,
+            opacity: 1,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.7
+            };
+        };
+
+        const onEachFeature = (feature, lyr) => {
+            lyr.on({
+            mouseover: (e) => {
+                lyr.setStyle({ weight: 3, color: '#666', dashArray: '', fillOpacity: 0.7 });
+                const p = feature.properties || {};
+                const val = Number(p[cfg.property]);
+                tooltipEl.innerHTML = `
+                <strong>Location:</strong> ${p.STATE_NAME || p.STATE || 'Unknown'}<br>
+                <strong>County:</strong> ${p.NAME || 'Unknown'}<br>
+                <strong>${cfg.name}:</strong> ${Number.isFinite(val) ? val.toFixed(1) + '%' : 'N/A'}
+                `;
+                tooltipEl.style.display = 'block';
+            },
+            mousemove: (e) => {
+                tooltipEl.style.left = `${e.originalEvent.pageX + 15}px`;
+                tooltipEl.style.top  = `${e.originalEvent.pageY + 15}px`;
+            },
+            mouseout: () => {
+                layer?.resetStyle(lyr);
+                tooltipEl.style.display = 'none';
+                tooltipEl.innerHTML = '';
+            }
+            });
+        };
+
+        layer = L.geoJson(data, { style, onEachFeature }).addTo(map);
+
+        const b = layer.getBounds();
+        if (b.isValid()) map.fitBounds(b, { padding: [20, 20], maxZoom: 8 });
+
+        map.whenReady(() => map.invalidateSize());
+        requestAnimationFrame(() => map.invalidateSize());
+
+        createLegend(cfg);
+        console.info('[INFO] rendered', key);
+        } catch (err) {
+        console.error('[ERROR] drawDisease failed:', err);
+        document.getElementById('dr-map').innerHTML =
+            '<p class="error">Could not load map data. Please try again later.</p>';
+        }
+    }
+
+    // button group (event delegation)
+    if (diseaseSelector) {
+        diseaseSelector.addEventListener('click', (e) => {
+        const btn = e.target.closest('.disease-btn');
+        if (!btn) return;
+        const key = btn.dataset.disease;
+        if (!key) return;
+        diseaseSelector.querySelectorAll('.disease-btn')
+            .forEach(b => b.classList.toggle('active', b === btn));
+        drawDisease(key);
+        });
+    }
+
+    // initial render
+    await drawDisease(current);
+    }
+
+
+
+
+
+
+
+
+
+
+
     // --- FAQ Accordion ---
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
@@ -433,5 +667,14 @@ Be professional, clear, and reassuring. Do not invent medical facts beyond visua
             }
         });
     }
+
+
+
+
+
+
+
+
+
 
 });
