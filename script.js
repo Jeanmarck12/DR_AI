@@ -309,7 +309,7 @@ Be professional, clear, and reassuring. Do not invent medical facts beyond visua
     console.info('[INFO] initMap');
     const map = L.map('dr-map').setView([39.8283, -98.5795], 4);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
+        maxZoom: 5,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     }).addTo(map);
 
